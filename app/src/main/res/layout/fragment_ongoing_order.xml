@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/ll_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingVertical="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txt_welcome_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Order in Process"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        style="@style/Divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_app_bar" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/orange"
+        android:visibility="visible"
+        android:elevation="100dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_app_bar" />
+
+    <fragment
+        android:id="@+id/fragment_map"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_app_bar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        tools:visibility="visible"
+        android:overScrollMode="never"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_map"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/ll_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="32dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Refresh"
+                app:icon="@drawable/ic_refresh"
+                app:iconGravity="textEnd"
+                android:textAllCaps="false"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_order_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="6dp"
+                android:paddingHorizontal="14dp">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/grey_600"/>
+
+                <TextView
+                    android:id="@+id/txt_order_status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:layout_marginStart="16dp"
+                    android:text="Food is being prepared"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/green_300"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_estimated_delivery_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/green_300"
+                android:textSize="16sp"
+                android:paddingHorizontal="16dp"
+                android:text="Estimated Delivery Time: 25 mins" />
+
+            <LinearLayout
+                android:id="@+id/ll_delivery_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="14dp"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery Location"
+                    android:textStyle="bold"
+                    android:textSize="21sp"
+                    android:textColor="@color/grey_600"/>
+
+                <TextView
+                    android:id="@+id/txt_address_incomplete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Address Incomplete"
+                    android:textSize="17sp"
+                    android:visibility="gone"
+                    android:textColor="@color/yellow_300"/>
+
+                <TextView
+                    android:id="@+id/txt_delivery_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sapru Marg, Hazratganj, Lucknow"
+                    android:layout_marginTop="6dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/grey_600"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_restaurant_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="14dp"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Restaurant Details"
+                    android:textStyle="bold"
+                    android:textSize="21sp"
+                    android:textColor="@color/grey_600"/>
+
+                <TextView
+                    android:id="@+id/txt_restaurant_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Firefly"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/grey_600"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:id="@+id/txt_restaurant_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kapoorthala, Lucknow"
+                    android:layout_marginBottom="4dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/grey_600"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Order Items"
+                android:textStyle="bold"
+                android:textSize="21sp"
+                android:layout_marginTop="16dp"
+                android:paddingHorizontal="12dp"
+                android:textColor="@color/grey_600"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_order_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_cart_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="6dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Order Total"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/grey_600"/>
+
+                    <TextView
+                        android:id="@+id/txt_grand_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="210"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/grey_600"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_payment_method"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="6dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Payment Method"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/grey_600"/>
+
+                    <TextView
+                        android:id="@+id/txt_payment_method"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="Cash on Delivery"
+                        android:textSize="18sp"
+                        android:textColor="@color/grey_600"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

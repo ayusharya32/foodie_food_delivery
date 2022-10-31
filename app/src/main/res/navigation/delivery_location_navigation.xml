@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/delivery_location_navigation"
+    app:startDestination="@id/nav_search_location">
+
+    <fragment
+        android:id="@+id/nav_search_location"
+        android:name="com.pentaware.foodie.ui.location.SearchLocationFragment"
+        android:label="Search Location"
+        tools:layout="@layout/fragment_search_location" >
+        <action
+            android:id="@+id/action_nav_search_location_to_nav_set_location_on_map"
+            app:destination="@id/nav_set_location_on_map" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_set_location_on_map"
+        android:name="com.pentaware.foodie.ui.location.SetLocationOnMapFragment"
+        android:label="Choose on Map"
+        tools:layout="@layout/fragment_set_location_on_map" >
+        <argument
+            android:name="searchAddress"
+            app:argType="com.pentaware.foodie.models.Address" />
+    </fragment>
+
+</navigation>
